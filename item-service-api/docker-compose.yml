@@ -1,0 +1,12 @@
+services:
+  db:
+    image: mariadb
+    container_name: budgetbook_mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_PASSWORD: root
+      MARIADB_USER: root
+      MARIADB_DATABASE: budgetbook_db
+    ports:
+      - 3306:3306

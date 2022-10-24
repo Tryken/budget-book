@@ -1,0 +1,64 @@
+<p-card>
+  <p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="left">
+      <button *ngIf="creatable"
+              pButton
+              pRipple
+              label="New"
+              icon="pi pi-plus"
+              class="p-button-success mr-2"
+              (click)="onOpenNew()"></button>
+
+      <button *ngIf="deletable"
+              pButton
+              pRipple
+              label="Delete"
+              icon="pi pi-trash"
+              class="p-button-danger"
+              (click)="onDeleteSelected()" [disabled]="!selectedRows || !selectedRows.length"></button>
+    </ng-template>
+
+    <ng-template pTemplate="right">
+      <button *ngIf="exportable" pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+    </ng-template>
+  </p-toolbar>
+  <p-table
+    responsiveLayout="scroll"
+    dataKey="id"
+    [value]="rows"
+    [lazy]="true"
+    [paginator]="pageable"
+    [rows]="5"
+    [(selection)]="selectedRows"
+    [rowHover]="true"
+    [loading]="loading"
+    (onLazyLoad)="onLazyLoad($event)">
+    <ng-template pTemplate="header">
+      <tr>
+        <th *ngIf="selectable" style="width: 4rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th *ngFor="let column of columns"
+            [pSortableColumn]="column.key">
+          {{ column.displayName }}
+          <p-sortIcon *ngIf="sortable" [field]="column.key"></p-sortIcon>
+        </th>
+        <th *ngIf="editable || deletable"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-row>
+      <tr>
+        <td *ngIf="selectable">
+          <p-tableCheckbox [value]="row"></p-tableCheckbox>
+        </td>
+        <td *ngFor="let column of columns">{{row[column.key]}}</td>
+        <td *ngIf="editable || deletable">
+          <button *ngIf="editable" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                  (click)="onEdit(row)"></button>
+          <button *ngIf="deletable" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                  (click)="onDelete(row)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>
