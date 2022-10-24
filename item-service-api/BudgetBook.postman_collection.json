@@ -1,0 +1,218 @@
+{
+	"info": {
+		"_postman_id": "c8549458-b0fd-4946-84c6-317522c639ff",
+		"name": "BudgetBook",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Item",
+			"item": [
+				{
+					"name": "Item List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/item?page=0&size=100&sort=id,desc",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"item"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "100"
+								},
+								{
+									"key": "sort",
+									"value": "id,desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Item By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/item/:uuid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"item",
+								":uuid"
+							],
+							"variable": [
+								{
+									"key": "uuid",
+									"value": "00786879-347d-465b-8e47-02f24e8f5bfe"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Item",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test\",\r\n    \"eanCode\": \"4003586102089\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/item",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"item"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Item",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/item/:uuid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"item",
+								":uuid"
+							],
+							"variable": [
+								{
+									"key": "uuid",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ItemEntry",
+			"item": [
+				{
+					"name": "Create Item Entry",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"itemId\": \"30eac1a0-cfac-4b6e-b076-d8f4cf6bdffa\",\r\n    \"amount\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/itementry",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"itementry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Item Entry List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/itementry",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"itementry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Item Entry List By Item Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/itementry/:uuid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"itementry",
+								":uuid"
+							],
+							"variable": [
+								{
+									"key": "uuid",
+									"value": "d2c61693-ba97-4753-8fa2-237916a84ff4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080/api",
+			"type": "default"
+		}
+	]
+}
